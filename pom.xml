@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>apigee</groupId>
+    <artifactId>currency-project-v1</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <name>Currency Parent Project</name>
+
+    <modules>
+        <module>java-callout</module>
+        <module>currency-v1</module>
+    </modules>
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <apigee.profile>test</apigee.profile>
+                <apigee.env>test</apigee.env>
+                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+                <apigee.apiversion>v1</apigee.apiversion>
+                <apigee.org>${env.APIGEE_ORG}</apigee.org>
+                <apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+                <apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+                <apigee.options>update</apigee.options>
+                <api.northbound.domain>${env.API_DOMAIN_TEST}</api.northbound.domain>
+                <api.testtag>~@wip</api.testtag>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <apigee.profile>prod</apigee.profile>
+                <apigee.env>prod</apigee.env>
+                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+                <apigee.apiversion>v1</apigee.apiversion>
+                <apigee.org>${env.APIGEE_ORG}</apigee.org>
+                <apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+                <apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+                <apigee.options>override</apigee.options>
+                <apigee.override.delay>5</apigee.override.delay>
+                <api.northbound.domain>${env.API_DOMAIN_PROD}</api.northbound.domain>
+                <api.testtag>~@wip,~@mock</api.testtag>
+            </properties>
+        </profile>
+    </profiles>
+</project>
